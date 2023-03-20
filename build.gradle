@@ -14,12 +14,18 @@ repositories {
 }
 
 dependencies {
-    def springBootVersion='2.6.4'
-    implementation(group:"org.springframework.boot", name:"spring-boot-starter-thymeleaf", version:springBootVersion)
-    implementation(group:"org.springframework.boot", name:"spring-boot-starter-web", version:springBootVersion)
-    implementation(group:"org.springframework.boot", name:"spring-boot-starter-validation", version:springBootVersion)
-    //implementation(group:"org.springframework.boot", name:"spring-boot-starter-datajpa", version:springBootVersion)
-    //implementation(group:"com.h2database", name:"h2", version:"1.4.200")
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.0'
+    implementation 'jakarta.authorization:jakarta.authorization-api:2.0.0'
+    implementation 'jakarta.interceptor:jakarta.interceptor-api:2.1.0'
+    implementation 'jakarta.authentication:jakarta.authentication-api:2.0.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation ('org.springframework.boot:spring-boot-starter-test'){
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    implementation(group:"com.h2database", name:"h2", version:"2.1.214")
 }
 
 test {
