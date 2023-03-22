@@ -12,9 +12,9 @@ public class LoadData {
     @Bean
     CommandLineRunner initData(ContactRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new Contact("Joel")));
-            log.info("Preloading " + repository.save(new Contact("Elie")));
-            log.info("Preloading " + repository.save(new Contact("Michel","Strasbourg","michel@hotmail.com")));
+            //log.info("Preloading " + repository.save(new Contact("Joel")));
+            //log.info("Preloading " + repository.save(new Contact("Elie")));
+            //log.info("Preloading " + repository.save(new Contact("Michel","Strasbourg","michel@hotmail.com")));
         };
     }
 }

@@ -1,5 +1,6 @@
 package org.example.servingwebcontent;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +10,8 @@ import java.util.List;
 @Controller
 public class ContactController {
 
-    private final ContactRepository contactRepository;
-
-    ContactController(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
-    }
+    @Autowired
+    private ContactRepository contactRepository;
 
     @GetMapping("/contact")
     public String contact(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {

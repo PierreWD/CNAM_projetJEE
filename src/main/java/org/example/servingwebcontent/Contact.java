@@ -3,9 +3,10 @@ package org.example.servingwebcontent;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Contact")
 public class Contact {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String Nom;
     private String Adresse;
