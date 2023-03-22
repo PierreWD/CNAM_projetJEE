@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <title>Contacts</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Adresse</td>
+                <td>Email</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contact : ${contactList}">
+                    <td th:text="${contact.nom}"></td>
+                    <td th:text="${contact.adresse}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td><a href="#" th:id="${contact.id}" class="UpdateContact">modifier</a></td>
+                    <td>
+                        <form method="POST" th:action="@{/DeleteContact(contactId=${contact.id})}">
+                            <button type="submit" class="btn btn-primary">X</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('AddContact').style.display='block'">
+        Add Contact
+    </button>
+
+    <div id="AddContact" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <h2>Ajouter un contact</h2>
+                <span onclick="document.getElementById('AddContact').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <form action="#" th:action="@{/AddContact}" method="post" th:object="${contactAdd}">
+                    <label for="Nom">Nom:</label>
+                    <input type="text" th:field="*{nom}" id="Nom" name="Nom"/>
+                    <label for="Adresse">Adresse:</label>
+                    <input type="text" th:field="*{adresse}" id="Adresse" name="Adresse"/>
+                    <label for="Email">Email:</label>
+                    <input type="text" th:field="*{email}" id="Email" name="Email"/>
+                    <button class="btn btn-primary" style="margin: 10px;" type="submit">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="UpdateContactModal" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <h2>Modifier le contact</h2>
+                <span onclick="document.getElementById('UpdateContactModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <form action="#" th:action="@{/UpdateContact}" method="post" th:object="${contactAdd}">
+                    <label for="Nom">Nom:</label>
+                    <input type="text" th:field="*{nom}" id="NomUpdate" name="NomUpdate"/>
+                    <label for="Adresse">Adresse:</label>
+                    <input type="text" th:field="*{adresse}" id="AdresseUpdate" name="AdresseUpdate"/>
+                    <label for="Email">Email:</label>
+                    <input type="text" th:field="*{email}" id="EmailUpdate" name="EmailUpdate"/>
+                    <input type="text" th:field="*{id}" style="display: none" id="IdUpdate" name="IdUpdate"/>
+                    <button class="btn btn-primary" style="margin: 10px;" type="submit">Modifier</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</html>
+
+<script>
+
+    $(".UpdateContact").click(function(event) {
+        let evID = $(this).closest('tr');
+        let nom = evID[0].children[0].innerText;
+        let adresse = evID[0].children[1].innerText;
+        let mail = evID[0].children[2].innerText;
+        console.log($(this)[0].id)
+        console.log(nom);
+        console.log(adresse);
+        console.log(mail);
+        $('#NomUpdate').val(nom);
+        $('#AdresseUpdate').val(adresse);
+        $('#EmailUpdate').val(mail);
+        $('#IdUpdate').val($(this)[0].id);
+        document.getElementById('UpdateContactModal').style.display='block';
+    });
+
+</script>
