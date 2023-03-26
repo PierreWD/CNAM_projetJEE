@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.hibernate.orm:hibernate-community-dialects:6.1.7.Final'
     implementation 'com.github.gwenn:sqlite-dialect:0.1.2'
     implementation 'org.hibernate:hibernate-entitymanager:5.6.15.Final'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
 }
 
 test {

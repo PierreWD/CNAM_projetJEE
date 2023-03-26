@@ -20,10 +20,10 @@
             </thead>
             <tbody>
                 <tr th:each="contact : ${contactList}">
-                    <td th:text="${contact.nom}"></td>
-                    <td th:text="${contact.adresse}"></td>
-                    <td th:text="${contact.email}"></td>
-                    <td><a href="#" th:id="${contact.id}" class="UpdateContact">modifier</a></td>
+                    <td th:text="${contact.getNom()}"></td>
+                    <td th:text="${contact.getAdresse()}"></td>
+                    <td th:text="${contact.getEmail()}"></td>
+                    <td><a href="#" th:id="${contact.getId()}" class="UpdateContact">modifier</a></td>
                     <td>
                         <form method="POST" th:action="@{/DeleteContact(contactId=${contact.id})}">
                             <button type="submit" class="btn btn-primary">X</button>
@@ -45,10 +45,10 @@
                 <form action="#" th:action="@{/AddContact}" method="post" th:object="${contactAdd}">
                     <label for="Nom">Nom:</label>
                     <input type="text" th:field="*{nom}" id="Nom" name="Nom"/>
-                    <label for="Adresse">Adresse:</label>
+                    <!--<label for="Adresse">Adresse:</label>
                     <input type="text" th:field="*{adresse}" id="Adresse" name="Adresse"/>
                     <label for="Email">Email:</label>
-                    <input type="text" th:field="*{email}" id="Email" name="Email"/>
+                    <input type="text" th:field="*{email}" id="Email" name="Email"/>-->
                     <button class="btn btn-primary" style="margin: 10px;" type="submit">Ajouter</button>
                 </form>
             </div>
@@ -63,10 +63,10 @@
                 <form action="#" th:action="@{/UpdateContact}" method="post" th:object="${contactAdd}">
                     <label for="Nom">Nom:</label>
                     <input type="text" th:field="*{nom}" id="NomUpdate" name="NomUpdate"/>
-                    <label for="Adresse">Adresse:</label>
+                    <!--<label for="Adresse">Adresse:</label>
                     <input type="text" th:field="*{adresse}" id="AdresseUpdate" name="AdresseUpdate"/>
                     <label for="Email">Email:</label>
-                    <input type="text" th:field="*{email}" id="EmailUpdate" name="EmailUpdate"/>
+                    <input type="text" th:field="*{email}" id="EmailUpdate" name="EmailUpdate"/>-->
                     <input type="text" th:field="*{id}" style="display: none" id="IdUpdate" name="IdUpdate"/>
                     <button class="btn btn-primary" style="margin: 10px;" type="submit">Modifier</button>
                 </form>
@@ -81,15 +81,15 @@
     $(".UpdateContact").click(function(event) {
         let evID = $(this).closest('tr');
         let nom = evID[0].children[0].innerText;
-        let adresse = evID[0].children[1].innerText;
-        let mail = evID[0].children[2].innerText;
+        //let adresse = evID[0].children[1].innerText;
+        //let mail = evID[0].children[2].innerText;
         console.log($(this)[0].id)
         console.log(nom);
-        console.log(adresse);
-        console.log(mail);
+       // console.log(adresse);
+       // console.log(mail);
         $('#NomUpdate').val(nom);
-        $('#AdresseUpdate').val(adresse);
-        $('#EmailUpdate').val(mail);
+        //$('#AdresseUpdate').val(adresse);
+        //$('#EmailUpdate').val(mail);
         $('#IdUpdate').val($(this)[0].id);
         document.getElementById('UpdateContactModal').style.display='block';
     });
